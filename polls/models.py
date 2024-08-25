@@ -10,7 +10,8 @@ class Question(models.Model):
 
     def was_published_recently(self):
         """Return False if the question was published more than 1 day ago"""
-        return self.publish_date >= timezone.now() - datetime.timedelta(days=1)
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.publish_date <= now
 
     def __str__(self):
         """Easy-to-read in shell"""
