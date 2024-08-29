@@ -17,8 +17,11 @@ To be added.
 
 ## Project Documents
 
-All project documents are in the [Project Wiki](https://github.com/0CreepySmile0/ku-polls/wiki/Home).
+All project documents are in the [Project Wiki](../../wiki/Home).
 
-- [Vision Statement](https://github.com/0CreepySmile0/ku-polls/wiki/Vision%20Statement)
-- [Requirements](https://github.com/0CreepySmile0/ku-polls/wiki/Requirements)
-- [Project Plan](https://github.com/0CreepySmile0/ku-polls/wiki/Project%20Plan) 
+- [Vision Statement](../../wiki/Vision%20Statement)
+- [Requirements](../../wiki/Requirements)
+- [Project Plan](../../wiki/Project%20Plan)
+- [Domain Model](../../wiki/Domain%20Model)
+- [Iteration 1 Plan](../../wiki/Iteration%201%20Plan)
+- [Iteration 2 PLan](../../wiki/Iteration%202%20Plan)
