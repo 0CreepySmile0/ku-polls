@@ -1,9 +1,14 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect, Http404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 from .models import Question, Choice
+
+
+class RedirectIndexView(generic.RedirectView):
+    url = "polls/"
 
 
 class IndexView(generic.ListView):
@@ -42,3 +47,12 @@ def vote(request, question_id):
         selected_choice.votes += 1
         selected_choice.save()
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+
+def check_valid_question(request, pk):
+    try:
+        get_object_or_404(Question, pk=pk)
+        return DetailView.as_view()(request, pk=pk)
+    except Http404:
+        messages.error(request, "Voting is not allowed for this question or the question doesn't exist")
+        return redirect(reverse('polls:index'))
