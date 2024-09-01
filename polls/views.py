@@ -8,10 +8,12 @@ from .models import Question, Choice
 
 
 class RedirectIndexView(generic.RedirectView):
+    """Use to redirect the '/' url to index page"""
     url = "polls/"
 
 
 class IndexView(generic.ListView):
+    """Home page view of polls app that show all available questions"""
     template_name = "polls/index.html"
     context_object_name = "latest_question_list"
 
@@ -21,6 +23,7 @@ class IndexView(generic.ListView):
 
 
 class DetailView(generic.DetailView):
+    """This view show the question text and all of its choices"""
     model = Question
     template_name = "polls/detail.html"
 
@@ -30,6 +33,7 @@ class DetailView(generic.DetailView):
 
 
 class ResultsView(generic.DetailView):
+    """Show the question text and all vote count of each choice"""
     model = Question
     template_name = "polls/results.html"
 
