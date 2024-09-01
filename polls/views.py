@@ -11,7 +11,8 @@ class IndexView(generic.ListView):
     context_object_name = "latest_question_list"
 
     def get_queryset(self):
-        return filter(Question.is_published, Question.objects.all())
+        x = [i.pk for i in Question.objects.all() if i.is_published()]
+        return Question.objects.filter(pk__in=x)
 
 
 class DetailView(generic.DetailView):
@@ -19,7 +20,7 @@ class DetailView(generic.DetailView):
     template_name = "polls/detail.html"
 
     def get_queryset(self):
-        x = [i.pk for i in filter(Question.is_published, Question.objects.all())]
+        x = [i.pk for i in Question.objects.all() if i.is_published()]
         return Question.objects.filter(pk__in=x)
 
 

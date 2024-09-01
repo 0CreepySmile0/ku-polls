@@ -20,8 +20,8 @@ class Question(models.Model):
 
     def can_vote(self):
         """Return True if current time is between published_date and end_date"""
-        if self.end_date.null:
-            return True
+        if not isinstance(self.end_date, datetime.datetime):
+            return self.published_date <= timezone.now()
         return self.published_date <= timezone.now() <= self.end_date
 
     def __str__(self):
