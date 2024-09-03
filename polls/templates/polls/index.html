@@ -1,5 +1,13 @@
 {% load static %}
-
+{% if user.is_authenticated %}
+   Welcome back, {{ user.username }}
+<form action="{% url 'logout' %}" method="post">
+   {% csrf_token %}
+  <button type="submit">Log Out</button>
+</form>
+{% else %}
+   Please <a href="{% url 'login' %}?next={{request.path}}">Login</a>
+{% endif %}
 <link rel="stylesheet" href="{% static 'polls/style.css' %}">
 {% if messages %}
 <ul class="messages">
@@ -20,3 +28,4 @@
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
+
