@@ -4,3 +4,21 @@ li a {
 body {
     background: white no-repeat;
 }
+
+.header {
+    width: 100%;
+    background-color: #006b1b;
+}
+
+.header a {
+  float: left;
+  text-align: center;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.header a:hover {
+  background-color: #ffef00;
+}

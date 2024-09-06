@@ -1,3 +1,4 @@
+from mysite import settings
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
@@ -7,12 +8,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import Question, Choice
-
-
-class RedirectIndexView(generic.RedirectView):
-    """Use to redirect the '/' url to index page."""
-
-    url = "polls/"
 
 
 class IndexView(generic.ListView):
@@ -49,7 +44,7 @@ def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     user = request.user
     if not user.is_authenticated:
-        return redirect('login')
+        return redirect(f"{settings.LOGIN_URL}?next={request.path}")
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
