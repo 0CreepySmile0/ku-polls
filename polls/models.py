@@ -39,7 +39,6 @@ class Choice(models.Model):
 
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
 
     @property
     def votes(self):
@@ -59,5 +58,5 @@ class Vote(models.Model):
 
     def __str__(self):
         """Easy-to-read in shell."""
-        return f"Choice: {self.choice.choice_text}, User: {self.user.username}"
+        return f"Choice = {self.choice.choice_text}, User = {self.user.username}"
 

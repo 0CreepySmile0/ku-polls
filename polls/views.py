@@ -7,7 +7,7 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
-from .models import Question, Choice
+from .models import Question, Choice, Vote
 
 
 class IndexView(generic.ListView):
@@ -52,8 +52,14 @@ def vote(request, question_id):
             "question": question,
             "error_message": "You didn't select a choice."
         })
-    selected_choice.votes += 1
-    selected_choice.save()
+    prev_vote = Vote.objects.filter(choice__question=question, user=user)
+    if prev_vote:
+        prev_vote = prev_vote[0]
+        prev_vote.choice = selected_choice
+        prev_vote.save()
+    else:
+        new_vote = Vote.objects.create(user=user, choice=selected_choice)
+        new_vote.save()
     return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 

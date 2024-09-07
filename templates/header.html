@@ -3,10 +3,10 @@
 <div class="header">
     KU Polls<br>
     {% if user.is_authenticated %}
-    <div class="item">
-        <a href="{% url 'polls:index' %}" class="item">Home</a>
-        <a href="{% url 'logout' %}" class="item">Log Out</a>
-    </div>
+        <div class="item">
+            <a href="{% url 'polls:index' %}" class="item">Home</a>
+            <a href="{% url 'logout' %}" class="item">Log Out</a>
+        </div>
     {% else %}
         <div class="item">
             <a href="{% url 'polls:index' %}" class="item">Home</a>
