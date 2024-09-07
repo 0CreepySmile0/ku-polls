@@ -1,18 +1,16 @@
 <html class="bg">
-<!--{% load static %}-->
 {% include 'header.html' %}
 {% if user.is_authenticated %}
    Welcome back, {{ user.username }}
 {% else %}
    Please <a href="{% url 'login' %}?next={{request.path}}">Login</a>
 {% endif %}
-<!--<link rel="stylesheet" href="{% static 'polls/style.css' %}">-->
 {% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-        {% if message.tags %} {{ message.tags }}:{% endif %} {{ message }}
-    {% endfor %}
-</ul>
+    <ul class="messages">
+        {% for msg in messages %}
+            <a>{{msg.tags.upper}}: {{msg}}</a>
+        {% endfor %}
+    </ul>
 {% endif %}
 {% if latest_question_list %}
     <ul>

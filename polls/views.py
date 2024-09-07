@@ -1,3 +1,4 @@
+"""Contain request handler view"""
 from mysite import settings
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
@@ -48,10 +49,9 @@ def vote(request, question_id):
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
+        messages.error(request, "You didn't select a choice.")
         return render(request, "polls/detail.html", {
-            "question": question,
-            "error_message": "You didn't select a choice."
-        })
+            "question": question})
     prev_vote = Vote.objects.filter(choice__question=question, user=user)
     if prev_vote:
         prev_vote = prev_vote[0]
@@ -60,6 +60,7 @@ def vote(request, question_id):
     else:
         new_vote = Vote.objects.create(user=user, choice=selected_choice)
         new_vote.save()
+    messages.info(request, f"Your vote for {selected_choice.choice_text} has been recorded")
     return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 
