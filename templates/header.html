@@ -1,0 +1,16 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'header.css' %}">
+<div class="header">
+    KU Polls<br>
+    {% if user.is_authenticated %}
+        <div class="item">
+            <a href="{% url 'polls:index' %}" class="item">Home</a>
+            <a href="{% url 'logout' %}" class="item">Log Out</a>
+        </div>
+    {% else %}
+        <div class="item">
+            <a href="{% url 'polls:index' %}" class="item">Home</a>
+            <a href="{% url 'login' %}?next={{request.path}}" class="item">Login</a>
+        </div>
+    {% endif %}
+</div>

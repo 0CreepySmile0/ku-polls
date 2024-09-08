@@ -1,0 +1,16 @@
+<html>
+<body>
+<h2>Login</h2>
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+        <tr>
+            <td colspan="2"><button type="submit">Login</button> </td>
+        </tr>
+    </table>
+    <input type="hidden" name="next" value="{{next}}"/>
+</form>
+<a href="{% url 'signup' %}">Sign up</a>
+</body>
+</html>
