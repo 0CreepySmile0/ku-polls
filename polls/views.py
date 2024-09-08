@@ -1,4 +1,5 @@
 """Contain request handler view"""
+import logging
 from mysite import settings
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
@@ -9,6 +10,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import Question, Choice, Vote
+
+
+logger = logging.getLogger("polls")
 
 
 class IndexView(generic.ListView):
@@ -29,6 +33,15 @@ class DetailView(LoginRequiredMixin, generic.DetailView):
 
     def get_queryset(self):
         return Question.objects.filter(published_date__lte=timezone.now())
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            user_vote = Vote.objects.get(user=self.request.user, choice__question=self.object)
+            context["user_vote"] = user_vote.choice
+        except Vote.DoesNotExist:
+            context["user_vote"] = None
+        return context
 
 
 class ResultsView(generic.DetailView):
