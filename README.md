@@ -20,6 +20,10 @@ Note: to run the command, you must be in the cloned directory.
 ```shell
 python manage.py runserver
 ```
+Or try this if background image not load or the appearance is broken
+```shell
+python manage.py runser --insecure
+```
 When you want to terminate app press `Ctrl-C`<br>
 To exit virtual environment. Simply run this
 ```shell
