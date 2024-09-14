@@ -9,11 +9,15 @@ https://cpske.github.io/ISP) course at [Kasetsart University](https://www.ku.ac.
 
 ## Installation
 
-To be added. If the procedure is long, put it in the wiki or a separate file.
+See [full instruction](Installation.md)
 
 ## Running the Application
 
-To be added.
+Follow the installation instruction and then runserver using
+```
+python manage.py runserver
+```
+Note: to run the command, you must be in the cloned directory.
 
 ## Project Documents
 
