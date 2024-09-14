@@ -1,6 +1,5 @@
 """Contain request handler view"""
 import logging
-from mysite import settings
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
@@ -9,6 +8,7 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from mysite import settings
 from .models import Question, Choice, Vote
 
 
@@ -64,6 +64,7 @@ def vote(request, question_id):
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
         messages.error(request, "You didn't select a choice.")
+        logger.error(f"{user.username} didn't select a choice.")
         return render(request, "polls/detail.html", {
             "question": question})
     prev_vote = Vote.objects.filter(choice__question=question, user=user)
@@ -75,16 +76,20 @@ def vote(request, question_id):
         new_vote = Vote.objects.create(user=user, choice=selected_choice)
         new_vote.save()
     messages.info(request, f"Your vote for {selected_choice.choice_text} has been recorded")
+    logger.info(f"{user.username} vote for {selected_choice.choice_text} has been recorded")
     return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 
 def check_valid_question(request, pk):
+    user = request.user
     try:
         question = get_object_or_404(Question, pk=pk)
         if question.can_vote():
             return DetailView.as_view()(request, pk=pk)
         messages.error(request, "Voting is not allowed for this question.")
+        logger.error(f"{user.username} try to access unavailable question")
         return redirect(reverse('polls:index'))
     except Http404:
         messages.error(request, "The question doesn't exist")
+        logging.error(f"{user.username} try to access question that does not exist")
         return redirect(reverse('polls:index'))

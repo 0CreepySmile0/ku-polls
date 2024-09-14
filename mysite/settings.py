@@ -84,20 +84,27 @@ LOGGING = {
     "handlers": {
         "file": {
             "class": "logging.FileHandler",
-            "filename": "general.log",
-            "level": "DEBUG",
+            "filename": "polls.log",
+            "formatter": "verbose",
+        },
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "simple"
         },
     },
     "loggers": {
-        "polls.views": {},
+        "polls": {
+            "handlers": ["file", "console"],
+            "level": "DEBUG"
+        },
     },
     "formatters": {
         "verbose": {
-            "format": "{name} {levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "format": "{levelname}: {name} {asctime} {module} {process:d} {thread:d} -> {message}",
             "style": "{",
         },
         "simple": {
-            "format": "{levelname} {message}",
+            "format": "{levelname}: {message}",
             "style": "{",
         },
     },
