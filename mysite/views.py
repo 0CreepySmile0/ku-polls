@@ -27,8 +27,10 @@ class RedirectIndexView(generic.RedirectView):
 
 
 class Login(LoginView):
-    """Custom login view by adding logger"""
+    """Custom login view by adding logger."""
+
     def form_valid(self, form):
+        """Nothing change but add logger."""
         response = super().form_valid(form)
         ip = get_client_ip(self.request)
         user = self.request.user
@@ -36,8 +38,10 @@ class Login(LoginView):
         return response
 
     def form_invalid(self, form):
+        """Nothing change but add logger."""
         ip = get_client_ip(self.request)
-        logger.warning(f"{self.request.POST.get('username')} failed to login from {ip}")
+        logger.warning(f"{self.request.POST.get('username')} "
+                       f"failed to login from {ip}")
         return super().form_invalid(form)
 
 
@@ -51,7 +55,8 @@ def signup(request):
             login(request, user)
             logger.info(f"{user.username} signed up and logged in from {ip}")
             return redirect("polls:index")
-        logger.warning(f"{request.POST.get('username')} failed to sign up from {ip}")
+        logger.warning(f"{request.POST.get('username')} "
+                       f"failed to sign up from {ip}")
     else:
         form = UserCreationForm()
     return render(request, "registration/signup.html", {"form": form})

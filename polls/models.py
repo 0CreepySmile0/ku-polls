@@ -3,7 +3,6 @@
 import datetime
 from django.db import models
 from django.utils import timezone
-from django.contrib import admin
 from django.contrib.auth.models import User
 
 
@@ -11,7 +10,8 @@ class Question(models.Model):
     """The Question model use as poll's question in the application."""
 
     question_text = models.CharField(max_length=200)
-    published_date = models.DateTimeField('date published', default=timezone.now)
+    published_date = models.DateTimeField('date published',
+                                          default=timezone.now)
     end_date = models.DateTimeField('end date', blank=True, null=True)
 
     def was_published_recently(self):
@@ -24,7 +24,11 @@ class Question(models.Model):
         return timezone.now() - self.published_date >= datetime.timedelta(0)
 
     def can_vote(self):
-        """Return True if current time is between published_date and end_date."""
+        """
+        Return True.
+
+        If current time is between published_date and end_date.
+        """
         if not isinstance(self.end_date, datetime.datetime):
             return self.published_date <= timezone.now()
         return self.published_date <= timezone.now() <= self.end_date
@@ -35,7 +39,11 @@ class Question(models.Model):
 
 
 class Choice(models.Model):
-    """The Choice model used in polls application. Each choice associate with its question."""
+    """
+    The Choice model used in polls application.
+
+    Each choice associate with its question.
+    """
 
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
@@ -58,5 +66,5 @@ class Vote(models.Model):
 
     def __str__(self):
         """Easy-to-read in shell."""
-        return f"Choice = {self.choice.choice_text}, User = {self.user.username}"
-
+        return f"Choice = {self.choice.choice_text}," \
+               f" User = {self.user.username}"
