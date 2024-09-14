@@ -1,5 +1,7 @@
 ## KU Polls: Online Survey Questions 
 
+[![Unittest for views and models](https://github.com/0CreepySmile0/ku-polls/actions/workflows/django.yml/badge.svg)](https://github.com/0CreepySmile0/ku-polls/actions/workflows/django.yml)
+
 An application to conduct online polls and surveys based
 on the [Django Tutorial project](https://www.djangoproject.com/start/), with
 additional features.
@@ -9,11 +11,15 @@ https://cpske.github.io/ISP) course at [Kasetsart University](https://www.ku.ac.
 
 ## Installation
 
-To be added. If the procedure is long, put it in the wiki or a separate file.
+See [full instruction](Installation.md)
 
 ## Running the Application
 
-To be added.
+Follow the installation instruction and then runserver using
+```
+python manage.py runserver
+```
+Note: to run the command, you must be in the cloned directory.
 
 ## Project Documents
 

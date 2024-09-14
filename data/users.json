@@ -4,7 +4,7 @@
   "pk": 3,
   "fields": {
     "password": "pbkdf2_sha256$870000$dihbtC35KQWjlFGuY6vQsk$sVcGwnReM90fJmlbg33OYYNjNlPoYLGAkICBl8RPFc0=",
-    "last_login": "2024-09-07T10:50:05.588Z",
+    "last_login": "2024-09-14T11:57:08.324Z",
     "is_superuser": false,
     "username": "CreepySmile",
     "first_name": "Yutivich",

@@ -1,5 +1,48 @@
+{% load static %}
+<style>
+    body {
+        background-image: url("{% static 'polls/floral_background.png' %}");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+    }
+    .question {
+        color: #ffef00;
+        background-color: #40bf53;
+        padding: 12px;
+        font-size: 20px;
+    }
+    .button {
+        color: #ffef00;
+        padding: 12px;
+    }
+    .button input {
+        color: white;
+        background-color: #379148;
+        font-size: 17px;
+        padding: 12px;
+        border: None;
+        text-decoration: underline;
+    }
+    .button input:hover {
+        color: #ffef00;
+        background-color: #307d3e;
+    }
+    .button a {
+        color: white;
+        background-color: #379148;
+        font-size: 17px;
+        padding: 12px;
+    }
+    .button a:hover {
+        color: #ffef00;
+        background-color: #307d3e;
+    }
+</style>
+<body>
 {% include 'header.html' %}
-<form action="{% url 'polls:vote' question.id %}" method="post">
+<br>
+<form action="{% url 'polls:vote' question.id %}" method="post" class="question">
     {% csrf_token %}
     <fieldset>
         <legend><h1>{{question.question_text}}</h1></legend>
@@ -16,7 +59,10 @@
             <label for="choice{{forloop.counter}}">{{choice.choice_text}}</label><br>
         {% endfor %}
     </fieldset>
-    <input type="submit" value="Vote">
-    <a href="{% url 'polls:results' question.id %}">Result</a>
-    <a href="{% url 'polls:index' %}">Home page</a>
+    <div class="button">
+        <input type="submit" value="Vote">
+        <a href="{% url 'polls:results' question.id %}">Result</a>
+        <a href="{% url 'polls:index' %}">Home</a>
+    </div>
 </form>
+</body>

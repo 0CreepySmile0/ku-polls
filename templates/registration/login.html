@@ -1,16 +1,51 @@
 <html>
-<body>
+<style>
+    .box {
+        color: #ffef00;
+        background-color: #00bd10;
+        padding: 12px;
+        font-size: 30px;
+    }
+    .button {
+        color: #ffef00;
+        padding: 12px;
+    }
+    .button a {
+        color: white;
+        background-color: #379148;
+        font-size: 17px;
+        padding: 12px;
+    }
+    .button a:hover {
+        color: #ffef00;
+        background-color: #307d3e;
+    }
+    .button button {
+        color: white;
+        background-color: #379148;
+        font-size: 17px;
+        padding: 12px;
+        border: None;
+        text-decoration: underline;
+    }
+    .button button:hover {
+        color: #ffef00;
+        background-color: #307d3e;
+    }
+</style>
+<body class="box">
 <h2>Login</h2>
 <form method="POST">
     {% csrf_token %}
     <table>
         {{ form.as_table }}
-        <tr>
-            <td colspan="2"><button type="submit">Login</button> </td>
-        </tr>
     </table>
     <input type="hidden" name="next" value="{{next}}"/>
+<div class="button">
+    <button type="submit">Login</button>
+    <a href="{% url 'signup' %}">Sign up</a>
+    <a href="{% url 'polls:index' %}">Home</a>
+</div>
 </form>
-<a href="{% url 'signup' %}">Sign up</a>
 </body>
 </html>

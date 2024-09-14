@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from decouple import config, Csv
+from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("SECRET_KEY", cast=str)
+SECRET_KEY = config("SECRET_KEY", cast=str, default=get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", cast=bool, default=False)
@@ -84,20 +85,27 @@ LOGGING = {
     "handlers": {
         "file": {
             "class": "logging.FileHandler",
-            "filename": "general.log",
-            "level": "DEBUG",
+            "filename": "polls.log",
+            "formatter": "verbose",
+        },
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "simple"
         },
     },
     "loggers": {
-        "polls.views": {},
+        "polls": {
+            "handlers": ["file", "console"],
+            "level": "DEBUG"
+        },
     },
     "formatters": {
         "verbose": {
-            "format": "{name} {levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "format": "{levelname}: {name} {asctime} {module} {process:d} {thread:d} -> {message}",
             "style": "{",
         },
         "simple": {
-            "format": "{levelname} {message}",
+            "format": "{levelname}: {message}",
             "style": "{",
         },
     },

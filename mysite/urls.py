@@ -23,7 +23,7 @@ urlpatterns = [
     path('', views.RedirectIndexView.as_view()),
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/login/', views.Login.as_view(), name='login'),
     path('signup/', views.signup, name='signup'),
     path('logout/', views.logout_handler, name='logout'),
 ]
