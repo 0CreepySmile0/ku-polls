@@ -1,5 +1,7 @@
 ## KU Polls: Online Survey Questions 
 
+[![Unittest for views and models](https://github.com/0CreepySmile0/ku-polls/actions/workflows/django.yml/badge.svg)](https://github.com/0CreepySmile0/ku-polls/actions/workflows/django.yml)
+
 An application to conduct online polls and surveys based
 on the [Django Tutorial project](https://www.djangoproject.com/start/), with
 additional features.

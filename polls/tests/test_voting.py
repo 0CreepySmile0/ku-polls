@@ -30,7 +30,7 @@ class QuestionVotingTest(TestCase):
         end2 = timezone.now() + datetime.timedelta(seconds=1)
         question2 = Question.objects.create(question_text="Q2", published_date=pub2, end_date=end2)
         self.assertIs(question2.can_vote(), True)
-        question3 = Question.objects.create(question_text="Q3", end_date=timezone.now())
+        question3 = Question.objects.create(question_text="Q3", published_date=timezone.now())
         self.assertIs(question3.can_vote(), True)
 
     def test_cannot_vote_before_published_date(self):
