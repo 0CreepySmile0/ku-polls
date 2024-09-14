@@ -10,7 +10,7 @@
     {% else %}
         <div class="item">
             <a href="{% url 'login' %}?next={{request.path}}" class="item">Login</a>
-            <a href="{% url 'login' %}?next={{request.path}}" class="item">Sign up</a>
+            <a href="{% url 'signup' %}?next={{request.path}}" class="item">Sign up</a>
             <a href="{% url 'polls:index' %}" class="item">Home</a>
         </div>
     {% endif %}
