@@ -3,7 +3,7 @@
 [![Unittest for views and models](https://github.com/0CreepySmile0/ku-polls/actions/workflows/django.yml/badge.svg?branch=master)](https://github.com/0CreepySmile0/ku-polls/actions/workflows/django.yml)
 
 An application to conduct online polls and surveys based
-on the [Django Tutorial project](https://www.djangoproject.com/start/), with
+on the [Django Tutorial project](https://docs.djangoproject.com/en/5.1/intro/tutorial01/), with
 additional features.
 
 This app was created as part of the [Individual Software Process](
@@ -15,11 +15,16 @@ See [full instruction](Installation.md)
 
 ## Running the Application
 
-Follow the installation instruction and then runserver using
-```
+Follow the installation instruction before running the server.
+Note: to run the command, you must be in the cloned directory.
+```shell
 python manage.py runserver
 ```
-Note: to run the command, you must be in the cloned directory.
+When you want to terminate app press `Ctrl-C`<br>
+To exit virtual environment. Simply run this
+```shell
+deactivate
+```
 
 ## Project Documents
 
