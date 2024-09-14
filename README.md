@@ -26,6 +26,16 @@ To exit virtual environment. Simply run this
 deactivate
 ```
 
+## User in data fixture
+Here is username and password from data fixture
+
+|Username|Password|Super user?|
+|:--|:--|:--|
+|admin|admin1234|Yes|
+|demo1|hackme11|No|
+|demo2|hackme22|No|
+|demo3|hackme33|No|
+
 ## Project Documents
 
 All project documents are in the [Project Wiki](../../wiki/Home).
