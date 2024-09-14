@@ -5,6 +5,7 @@
     padding: 12px;
     color: #ffef00;
     font-size: 30px;
+    font-family: Arial;
 }
 
 .item {
@@ -12,29 +13,16 @@
     padding: 12px;
     font-size: 17px;
     background-color: #00bd10;
+    font-family: Arial
 }
 
 .item a {
     color: white;
+    text-decoration: none;
     background-color: #00720e;
 }
 
 .item a:hover {
-    color: #ffef00;
-    background-color: #005e0e;
-}
-
-.item button {
-    float: right;
-    text-align: center;
-    padding: 12px;
-    color: white;
-    font-size: 17px;
-    background-color: #00720e;
-    border: none;
-}
-
-.item button:hover {
     color: #ffef00;
     background-color: #005e0e;
 }
