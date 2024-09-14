@@ -1,27 +1,87 @@
-<html class="bg">
+{% load static %}
+<style>
+    body {
+        background-image: url("{% static 'polls/floral_background.png' %}");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+    }
+    .question {
+        color: #ffef00;
+        background-color: #40bf53;
+        padding: 12px;
+        font-size: 30px;
+    }
+    .open {
+        font-size: 20px;
+        color: #ffef00;
+    }
+    .close {
+        font-size: 20px;
+        color: #ff000a;
+    }
+    .button {
+        color: #ffef00;
+        padding: 12px;
+    }
+    .button a {
+        color: white;
+        background-color: #379148;
+        font-size: 17px;
+        padding: 12px;
+    }
+    .button a:hover {
+        color: #ffef00;
+        background-color: #307d3e;
+    }
+    .welcome {
+        color: black;
+        font-size: 25px;
+    }
+    .login {
+        color: #ffef00;
+        font-size: 25px
+    }
+    .message_error {
+        color: #ff000a;
+        font-size: 20px;
+    }
+</style>
+<body>
 {% include 'header.html' %}
 {% if user.is_authenticated %}
-   Welcome back, {{ user.username }}
+    <a class="welcome">Welcome back, {{ user.username }}</a>
 {% else %}
-   Please <a href="{% url 'login' %}?next={{request.path}}">Login</a>
+    <a class="welcome">Please
+        <a class="login" href="{% url 'login' %}?next={{request.path}}">Login</a>
+    </a>
 {% endif %}
 {% if messages %}
     <ul class="messages">
         {% for msg in messages %}
-            <a>{{msg.tags.upper}}: {{msg}}</a>
+            <a class="message_error">{{msg.tags.upper}}: {{msg}}</a>
         {% endfor %}
     </ul>
 {% endif %}
 {% if latest_question_list %}
     <ul>
         {% for question in latest_question_list %}
-            <li class="question">
-                <a href="{% url 'polls:detail' question.id %}">{{question.question_text}}</a>
-                <a href="{% url 'polls:results' question.id %}">Result</a>
-            </li>
+                <div class="question">
+                    {{question.question_text}}<br>
+                    {% if question.can_vote %}
+                        <a class="open">Status: Open</a>
+                    {% else %}
+                        <a class="close">Status: Closed</a>
+                    {% endif %}
+                    <div class="button">
+                        <a href="{% url 'polls:detail' question.id %}">Vote</a>
+                        <a href="{% url 'polls:results' question.id %}">Result</a>
+                    </div>
+                </div>
+        <br><br>
         {% endfor %}
     </ul>
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
-</html>
+</body>

@@ -1,36 +1,70 @@
+{% load static %}
+<style>
+    body {
+        background-image: url("{% static 'polls/floral_background.png' %}");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+}
+    table,
+    th,
+    td {
+        padding-right: 100px;
+        text-align: left;
+    }
+    .question {
+        color: #ffef00;
+        background-color: #40bf53;
+        padding: 12px;
+        font-size: 20px;
+    }
+    .button {
+        color: #ffef00;
+        padding: 12px;
+    }
+    .button a {
+        color: white;
+        background-color: #379148;
+        font-size: 17px;
+        padding: 12px;
+    }
+    .button a:hover {
+        color: #ffef00;
+        background-color: #307d3e;
+    }
+    .message_info {
+        color: black;
+        font-size: 20px;
+    }
+</style>
+<body>
 {% include 'header.html' %}
 {% if messages %}
     <ul class="messages">
         {% for msg in messages %}
-            <a>{{msg}}</a>
+            <a class="message_info">{{msg}}</a>
         {% endfor %}
     </ul>
 {% endif %}
-<head>
-    <style>
-         table,
-         th,
-         td {
-             padding-right: 100px;
-             text-align: left;
-         }
-    </style>
-</head>
-<h1>{{question.question_text}}</h1>
-
-<ul>
-    <table>
-        <tr>
-            <th>Choice</th>
-            <th>Vote(s)</th>
-        </tr>
-        {% for choice in question.choice_set.all %}
+<br>
+<div class="question">
+    <h1>{{question.question_text}}</h1>
+    <ul>
+        <table class="question">
             <tr>
-                <td>{{choice.choice_text}}</td>
-                <td>{{choice.votes}}</td>
+                <th>Choice</th>
+                <th>Vote(s)</th>
             </tr>
-        {% endfor %}
-    </table>
-</ul>
-
-<a href="{% url 'polls:index' %}">Home page</a>
+            {% for choice in question.choice_set.all %}
+                <tr>
+                    <td>{{choice.choice_text}}</td>
+                    <td>{{choice.votes}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </ul>
+    <div class="button">
+        <a href="{% url 'polls:index' %}">Home</a>
+    </div>
+</div>
+</body>
