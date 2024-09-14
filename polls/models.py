@@ -25,13 +25,13 @@ class Question(models.Model):
 
     def can_vote(self):
         """
-        Return True.
-
-        If current time is between published_date and end_date.
+        Return True if the current time is between published_date and end_date.
+        If end_date is None, voting is open indefinitely after the published date.
         """
-        if not isinstance(self.end_date, datetime.datetime):
-            return self.published_date <= timezone.now()
-        return self.published_date <= timezone.now() <= self.end_date
+        now = timezone.now()
+        if self.end_date:
+            return self.published_date <= now <= self.end_date
+        return self.published_date <= now
 
     def __str__(self):
         """Easy-to-read in shell."""
