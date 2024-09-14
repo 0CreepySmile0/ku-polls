@@ -1,7 +1,7 @@
 """Store redirect view and signup view."""
 from django.views import generic
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -16,12 +16,9 @@ def signup(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get("username")
-            pw = form.cleaned_data.get("password1")
-            user = authenticate(username=username, password=pw)
+            user = form.save()
             login(request, user)
-        return redirect("polls:index")
+            return redirect("polls:index")
     else:
         form = UserCreationForm()
     return render(request, "registration/signup.html", {"form": form})

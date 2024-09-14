@@ -22,7 +22,8 @@ class IndexView(generic.ListView):
     context_object_name = "latest_question_list"
 
     def get_queryset(self):
-        return Question.objects.filter(published_date__lte=timezone.now())
+        return Question.objects.filter(published_date__lte=timezone.now()).\
+            order_by('published_date')
 
 
 class DetailView(LoginRequiredMixin, generic.DetailView):
@@ -79,8 +80,11 @@ def vote(request, question_id):
 
 def check_valid_question(request, pk):
     try:
-        get_object_or_404(Question, pk=pk)
-        return DetailView.as_view()(request, pk=pk)
+        question = get_object_or_404(Question, pk=pk)
+        if question.can_vote():
+            return DetailView.as_view()(request, pk=pk)
+        messages.error(request, "Voting is not allowed for this question.")
+        return redirect(reverse('polls:index'))
     except Http404:
-        messages.error(request, "Voting is not allowed for this question or the question doesn't exist")
+        messages.error(request, "The question doesn't exist")
         return redirect(reverse('polls:index'))
