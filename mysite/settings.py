@@ -95,8 +95,14 @@ LOGGING = {
     },
     "loggers": {
         "polls": {
-            "handlers": ["file", "console"],
-            "level": "DEBUG"
+            "handlers": ["file"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': True,
         },
     },
     "formatters": {

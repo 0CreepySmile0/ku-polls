@@ -3,6 +3,7 @@
 import datetime
 from django.db import models
 from django.utils import timezone
+from django.contrib import admin
 from django.contrib.auth.models import User
 
 
@@ -19,14 +20,24 @@ class Question(models.Model):
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.published_date <= now
 
+    @admin.display(
+        boolean=True,
+        description="Published yet?",
+    )
     def is_published(self):
         """Return True if current time has passed published_date."""
         return timezone.now() - self.published_date >= datetime.timedelta(0)
 
+    @admin.display(
+        boolean=True,
+        description="Can vote?",
+    )
     def can_vote(self):
         """
         Return True if the current time is between published_date and end_date.
-        If end_date is None, voting is open indefinitely after the published date.
+
+        If end_date is None,
+        voting is open indefinitely after the published date.
         """
         now = timezone.now()
         if self.end_date:
@@ -64,7 +75,12 @@ class Vote(models.Model):
     choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    @property
+    def question(self):
+        """Return question associated with choice voted."""
+        return self.choice.question
+
     def __str__(self):
         """Easy-to-read in shell."""
-        return f"Choice = {self.choice.choice_text}," \
-               f" User = {self.user.username}"
+        return f"{self.user.username} vote for " \
+               f"{self.choice.choice_text}"

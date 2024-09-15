@@ -5,36 +5,22 @@
     padding: 12px;
     color: #ffef00;
     font-size: 30px;
+    font-family: Arial;
 }
 
 .item {
-    text-align: right;
+    color: #ffef00;
     padding: 12px;
-    font-size: 17px;
-    background-color: #00bd10;
+    text-align: left;
 }
-
 .item a {
     color: white;
     background-color: #00720e;
-}
-
-.item a:hover {
-    color: #ffef00;
-    background-color: #005e0e;
-}
-
-.item button {
-    float: right;
-    text-align: center;
-    padding: 12px;
-    color: white;
     font-size: 17px;
-    background-color: #00720e;
-    border: none;
+    padding: 12px;
+    text-decoration: None;
 }
-
-.item button:hover {
+.item a:hover {
     color: #ffef00;
     background-color: #005e0e;
 }

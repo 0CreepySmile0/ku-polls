@@ -5,6 +5,7 @@
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: 100% 100%;
+        font-family: Arial
 }
     table,
     th,
@@ -27,6 +28,7 @@
         background-color: #379148;
         font-size: 17px;
         padding: 12px;
+        text-decoration: None;
     }
     .button a:hover {
         color: #ffef00;
@@ -37,6 +39,7 @@
         font-size: 20px;
     }
 </style>
+<title>Result for {{question.question_text}}</title>
 <body>
 {% include 'header.html' %}
 {% if messages %}

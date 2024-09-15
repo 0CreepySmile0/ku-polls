@@ -5,7 +5,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.urls import reverse
 from django.views import generic
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from mysite import settings
@@ -27,7 +26,7 @@ class IndexView(generic.ListView):
             order_by('published_date')
 
 
-class DetailView(LoginRequiredMixin, generic.DetailView):
+class DetailView(generic.DetailView):
     """This view show the question text and all of its choices."""
 
     model = Question
@@ -44,7 +43,7 @@ class DetailView(LoginRequiredMixin, generic.DetailView):
             user_vote = Vote.objects.get(user=self.request.user,
                                          choice__question=self.object)
             context["user_vote"] = user_vote.choice
-        except Vote.DoesNotExist:
+        except (Vote.DoesNotExist, TypeError):
             context["user_vote"] = None
         return context
 

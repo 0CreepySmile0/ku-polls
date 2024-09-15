@@ -1,42 +1,6 @@
 [
 {
   "model": "auth.user",
-  "pk": 3,
-  "fields": {
-    "password": "pbkdf2_sha256$870000$dihbtC35KQWjlFGuY6vQsk$sVcGwnReM90fJmlbg33OYYNjNlPoYLGAkICBl8RPFc0=",
-    "last_login": "2024-09-14T11:57:08.324Z",
-    "is_superuser": false,
-    "username": "CreepySmile",
-    "first_name": "Yutivich",
-    "last_name": "",
-    "email": "yutivich.t@ku.th",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2024-09-03T08:27:28.129Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 4,
-  "fields": {
-    "password": "pbkdf2_sha256$870000$Uebxh412WtCv92BXsJCfwv$7GiEHP/lpQ61gaP2B+Oc+km9w8q6vXaK4/r6inc63zs=",
-    "last_login": "2024-09-07T09:52:48.879Z",
-    "is_superuser": false,
-    "username": "demo1",
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2024-09-07T09:37:53.017Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
   "pk": 5,
   "fields": {
     "password": "pbkdf2_sha256$870000$f5D8OhZKOV88OvgqWajeyA$Gz+HQJu1nCFQhShhgKqR7/zMZn+L3MOOmCgpR1wv7/Q=",
@@ -67,6 +31,42 @@
     "is_staff": false,
     "is_active": true,
     "date_joined": "2024-09-07T09:41:07.373Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$Uebxh412WtCv92BXsJCfwv$7GiEHP/lpQ61gaP2B+Oc+km9w8q6vXaK4/r6inc63zs=",
+    "last_login": "2024-09-07T09:52:48.879Z",
+    "is_superuser": false,
+    "username": "demo1",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-09-07T09:37:53.017Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$79d5DdJfvjBCqCitl71LZU$CUTO9J1HVceHX6UFHF6yv18BIO4OYCe6SeP/Eag4pPA=",
+    "last_login": "2024-09-14T18:48:40.996Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-09-14T18:47:26.548Z",
     "groups": [],
     "user_permissions": []
   }
