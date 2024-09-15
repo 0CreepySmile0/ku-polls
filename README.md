@@ -1,7 +1,7 @@
 ## KU Polls: Online Survey Questions 
 
-[![Unittest for views and models](https://github.com/0CreepySmile0/ku-polls/actions/workflows/django.yml/badge.svg?branch=master)](https://github.com/0CreepySmile0/ku-polls/actions/workflows/django.yml)
-[![Flake8 on models and views](https://github.com/0CreepySmile0/ku-polls/actions/workflows/flake8_test.yml/badge.svg?branch=master)](https://github.com/0CreepySmile0/ku-polls/actions/workflows/flake8_test.yml)
+[![Unittest for views and models](https://github.com/0CreepySmile0/ku-polls/actions/workflows/django.yml/badge.svg)](https://github.com/0CreepySmile0/ku-polls/actions/workflows/django.yml)
+[![Flake8 on models and views](https://github.com/0CreepySmile0/ku-polls/actions/workflows/flake8_test.yml/badge.svg)](https://github.com/0CreepySmile0/ku-polls/actions/workflows/flake8_test.yml)
 
 An application to conduct online polls and surveys based
 on the [Django Tutorial project](https://docs.djangoproject.com/en/5.1/intro/tutorial01/), with
