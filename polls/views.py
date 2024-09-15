@@ -43,7 +43,7 @@ class DetailView(generic.DetailView):
             user_vote = Vote.objects.get(user=self.request.user,
                                          choice__question=self.object)
             context["user_vote"] = user_vote.choice
-        except:
+        except (Vote.DoesNotExist, TypeError):
             context["user_vote"] = None
         return context
 
