@@ -35,7 +35,9 @@ class Question(models.Model):
     def can_vote(self):
         """
         Return True if the current time is between published_date and end_date.
-        If end_date is None, voting is open indefinitely after the published date.
+
+        If end_date is None,
+        voting is open indefinitely after the published date.
         """
         now = timezone.now()
         if self.end_date:
