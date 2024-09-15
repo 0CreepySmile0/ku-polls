@@ -9,19 +9,17 @@
 }
 
 .item {
-    text-align: right;
+    color: #ffef00;
     padding: 12px;
-    font-size: 17px;
-    background-color: #00bd10;
-    font-family: Arial
+    text-align: left;
 }
-
 .item a {
     color: white;
-    text-decoration: none;
     background-color: #00720e;
+    font-size: 17px;
+    padding: 12px;
+    text-decoration: None;
 }
-
 .item a:hover {
     color: #ffef00;
     background-color: #005e0e;

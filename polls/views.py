@@ -27,7 +27,7 @@ class IndexView(generic.ListView):
             order_by('published_date')
 
 
-class DetailView(LoginRequiredMixin, generic.DetailView):
+class DetailView(generic.DetailView):
     """This view show the question text and all of its choices."""
 
     model = Question
@@ -44,7 +44,7 @@ class DetailView(LoginRequiredMixin, generic.DetailView):
             user_vote = Vote.objects.get(user=self.request.user,
                                          choice__question=self.object)
             context["user_vote"] = user_vote.choice
-        except Vote.DoesNotExist:
+        except:
             context["user_vote"] = None
         return context
 
