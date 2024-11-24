@@ -1,0 +1,9 @@
+.mypy_cache
+.github
+.git
+.venv
+venv
+setting.ini
+__pycache__
+.idea
+db.sqlite3

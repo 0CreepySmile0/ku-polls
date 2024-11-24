@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  db:
+    image: "postgres:17"
+    environment:
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+      POSTGRES_DB: "${DB_NAME}"
+    healthcheck:
+      test: [
+        "CMD-SHELL",
+        "pg_isready -d $$POSTGRES_DB -U $$POSTGRES_USER"
+      ]
+      start_period: 30s
+      interval: 5s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - ./db:/var/lib/postgresql/data
+  app:
+    build: .
+    image: "ku-polls"
+    environment:
+      SECRET_KEY: "${SECRET_KEY?:SECRET_KEY not set}"
+      DB_USERNAME: "${DB_USER?:DB_USER not set}"
+      DB_PASSWORD: "${DB_PASSWORD?:DB_PWD not set}"
+      DB_HOST: db
+      DB_PORT: 5432
+    depends_on:
+      db:
+        condition: service_healthy
+    links:
+      - db
+    ports:
+      - "80:8000"
